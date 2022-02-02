@@ -109,7 +109,7 @@ console.log("Basamak Toplamları:", birler + onlar + yuzler);
 // Math.random(); //* 0 ve 1 arasında rasgele sayı üretir.
 
 // * =======================================================
-// *                 KARŞILATIRMA OPERATÖRLERİ
+// *                 KARŞILAŞTIRMA OPERATÖRLERİ
 // * =======================================================
 
 const sayi1 = 3;
@@ -186,9 +186,9 @@ console.log(Number("0o11")); // 9
 console.log(Number("sayi")); //NAN
 
 //* -------- NULLISH COLAESCING OPERATOR----------- */
-//?  Bir ifadenin null veya undefined olması durumuna göre seçim yapmaızı olanak sağlayan bir operatördür.
+//?  Bir ifadenin null veya undefined olması durumuna göre seçim yapmamızı olanak sağlayan bir operatördür.
 const isim1 = null; // ?null
 const defaultIsim = "noname";
 const islem1 = isim1 ?? defaultIsim;
 
-console.log(islem1); //noname veya isim
+console.log(islem1.toUpperCase()); //noname veya isim
