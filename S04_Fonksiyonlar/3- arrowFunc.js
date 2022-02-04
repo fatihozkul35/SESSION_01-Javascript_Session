@@ -6,7 +6,7 @@
 // !3.YÖNTEM  : ARROW FUNCTIONS
 // !-----------------------------------------------------------
 
-console.log("****** ARROW FUNCTIONS ******");
+console.log("****** 3- ARROW FUNCTIONS ******");
 //* Örnek1:
 //*************************************************************/
 const topla1 = (a, b) => a + b; // Arrow fonk tanimlamasi
@@ -23,6 +23,7 @@ console.log("US:", usAl(2, 3));
 //* Örnek3:
 //*************************************************************/
 const ciftMi = (sayi) => (sayi % 2 == 0 ? "çift" : "tek");
+
 console.log(ciftMi(5));
 console.log(ciftMi(2));
 
@@ -38,15 +39,16 @@ menu();
 
 //* Ornek5: Bilgi Ver fonksiyonu
 //************************************************************/
+
 // 1.YÖNTEM
 const bilgiVer = (ad, soyad, dogum) => {
-  const bilgi = `Adim ${ad}, Soyadim ${soyad} ve yasim ${2021 - dogum}`;
+  const bilgi = `Adim ${ad}, Soyadim ${soyad} ve yasim ${2022 - dogum}`;
   return bilgi;
 };
 
 // 2.YÖNTEM
 const bilgiVer1 = (ad, soyad, dogum) =>
-  `Adim ${ad}, Soyadim ${soyad} ve yasim ${2021 - dogum}`;
+  `Adim ${ad}, Soyadim ${soyad} ve yasim ${2022 - dogum}`;
 
 console.log(bilgiVer1("Mehmet", "Cakmak", 1989));
 
@@ -56,7 +58,7 @@ const r = prompt("Yaricapi giriniz:");
 const h = prompt("Yukseklik giriniz:");
 
 const hacimHesapla = (r, h) => Math.PI * r * r * h;
-console.log("Silindir Hacmi:" + Math.round(hacimHesapla(r, h)));
+console.log("Silindir Hacmi:", Math.round(hacimHesapla(r, h)));
 
-//toFixed: Virgulden sonraki basamak sayisini belirler.
+//* toFixed: Virgulden sonraki basamak sayisini belirler.
 console.log("Silindir Hacmi:" + hacimHesapla(r, h).toFixed(2));

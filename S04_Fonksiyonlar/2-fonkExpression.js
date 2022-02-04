@@ -7,7 +7,7 @@
 //!-----------------------------------------------------------
 //* Örnek1:
 //**********************************************************/
-console.log("******** EXPRESSION*******");
+console.log("******** 2- EXPRESSION*******");
 
 // Önce declaration sonra calling
 const tekCift = function (sayi) {
