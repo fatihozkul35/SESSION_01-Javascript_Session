@@ -16,14 +16,13 @@
 // console.log(ters(cumle));
 
 //****Finding fibonacci number */
-// function fibonacci(num) {
-//   if (num == 1) {
-//     return 1;
-//   } else if (num == 2) {
-//     return 2;
-//   } else {
-//     return fib(num - 1) + fib(num - 2);
-//   }
-// }
+function fib(num) {
+  //   if (num < 2) {
+  //     return num;
+  //   } else {
+  //     return fib(num - 1) + fib(num - 2);
+  //   }
+  return num < 2 ? num : fib(num - 1) + fib(num - 2);
+}
 
-// console.log(fib(12));
+console.log(fib(-5));
