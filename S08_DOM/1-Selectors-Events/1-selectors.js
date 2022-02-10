@@ -27,9 +27,9 @@ const img = document.getElementsByTagName("img");
 img[0].style.borderStyle = "solid";
 img[0].style.borderColor = "black";
 img[0].style.transform = "rotate(-5deg)";
-
+console.log(img);
 //*======================================================
-//*                   GETELEMENTBYCLASSNAME()
+//*                   GETELEMENTSBYCLASSNAME()
 //* ======================================================
 
 //* EXAMPLE-4 (H1 Style)
@@ -43,76 +43,20 @@ header[0].style.color = "blue";
 //* ======================================================
 //*                   QUERYSELECTOR()
 //* ======================================================
-
 const body = document.querySelector("#body");
 body.style.backgroundImage = "linear-gradient(to right, green,yellow)";
 
+//* title class'ındaki tüm elementleri seçer.
 const title = document.querySelector(".title");
 title.textContent = "DOM Manipulation ❤️";
 
-//* ======================================================
-//*                   ASSIGNMENT
-//* ======================================================
+//* Tüm title etiketlerini seçer
+// const title = document.querySelector("title");
+// title.textContent = "DOM Manipulation ❤️";
 
-const linkA = header[0].children[0];
-linkA.style.textDecoration = "none";
+//* Tüm p elementlerini nodelist olarak seçer.
+//! Nodelist veritipi ile forEach gibi array iterasyon metotları kullanılabilir.
 
-linkA.onmouseover = function () {
-  linkA.style.color = "yellow";
-  img[0].style.transform = "rotate(-20deg)";
-  img[0].style.transition = "all 1s";
-  body.style.backgroundImage = "linear-gradient(to right, pink,aqua)";
-  body.style.backgroundColor = "red";
-};
-
-linkA.onmouseout = function () {
-  linkA.style.color = "blue";
-  img[0].style.transform = "rotate(30deg)";
-  img[0].style.transition = "all .5s";
-  body.style.backgroundImage = "linear-gradient(to right, green,blue)";
-};
-
-img[0].style.width = "100px";
-
-// btn.onclick = function () {
-//   body.style.backgroundImage = "";
-//   body.style.backgroundColor = `${randomFarbe()}`; // #FFA5B3
-// };
-
-btn.addEventListener("click", function () {
-  body.style.backgroundImage = "";
-  body.style.backgroundColor = `${randomFarbe()}`;
-});
-
-// #FF81B0
-const hexList = [
-  "0",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-];
-
-let index;
-
-function randomFarbe() {
-  let farben = "#";
-
-  for (let i = 0; i < 6; i++) {
-    index = Math.floor(Math.random() * hexList.length);
-    farben += hexList[index];
-  }
-
-  return farben;
-}
+//! HTMLCollection veri tipi ile array iterasyon metotları kullanılmaz. Lakin klasik döngü cümlecikleri kullanılabilir.
+const p = document.querySelectorAll("p");
+console.log(p);
