@@ -46,17 +46,17 @@ header[0].style.color = "blue";
 const body = document.querySelector("#body");
 body.style.backgroundImage = "linear-gradient(to right, green,yellow)";
 
-//* title class'ındaki tüm elementleri seçer.
+//? it selects the elements whose class names are title.
 const title = document.querySelector(".title");
 title.textContent = "DOM Manipulation ❤️";
 
-//* Tüm title etiketlerini seçer
+//? it selects all title tags
 // const title = document.querySelector("title");
 // title.textContent = "DOM Manipulation ❤️";
 
-//* Tüm p elementlerini nodelist olarak seçer.
-//! Nodelist veritipi ile forEach gibi array iterasyon metotları kullanılabilir.
-
-//! HTMLCollection veri tipi ile array iterasyon metotları kullanılmaz. Lakin klasik döngü cümlecikleri kullanılabilir.
+//? it returns all p tags as a nodelist.
 const p = document.querySelectorAll("p");
 console.log(p);
+
+//! We can use array iteration's methods like forEach() with the Nodelists.
+//! Array iteration methods can not be used with HTMLCollections. But it can be used with classical loops.

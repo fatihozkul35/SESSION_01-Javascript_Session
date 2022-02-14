@@ -8,6 +8,7 @@ const deleteBtn = document.getElementById("delete");
 
 const langSection = document.getElementById("lang-section");
 const ul = document.querySelector("ul");
+
 //! ------------------ EVENTS -------------------
 //* Triggred when on btn is clickled
 onBtn.addEventListener("click", () => {
@@ -37,10 +38,10 @@ langSection.appendChild(h1);
 console.log(langSection);
 ul.before(h1);
 
-//? it is not good approach for programming
+//? it is not good programming approach
 // ul.innerHTML += `<h1>Programming Languages</h1>`;
 
-//! childeren property si ile alt node'lar seçilebilir.
+//? We can use children property to select the sub-nodes.
 console.log(langSection.children[0].children[1]);
 
 //? Triggred when add buton is clicked.
@@ -89,7 +90,7 @@ languages.onkeydown = function (e) {
 };
 
 //? Focus to the language input when window is loaded,
-//? and run the startup functions like checkJavascriptStyle()
+//? and run the startup functions like checkJavascriptText()
 window.onload = () => {
   checkJavascriptText();
   //?focus on the languages input when window is loaded
