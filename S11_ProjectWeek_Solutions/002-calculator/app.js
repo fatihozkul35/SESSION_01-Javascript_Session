@@ -1,5 +1,9 @@
+//* ======================================================
+//*                     IOS CALCULATOR
+//* ======================================================
+
 //? Selectors
-//! We can use getElementsByClassName selector to select multiple html elements. But, if we want to iterate these elements, we should use Array.from() method or spread/rest (...) operator.
+//! We can use getElementsByClassName selector to select multiple html elements. But, if we want to iterate these elements, we can use Array.from() method or spread/rest (...) operator.
 // const numberButtons = document.getElementsByClassName("num");
 // Array.from(numberButtons).forEach((element) => {
 //   console.log(element);
@@ -7,6 +11,7 @@
 // [...numberButtons].forEach((element) => {
 //   console.log(element);
 // });
+
 const numberButtons = document.querySelectorAll(".num");
 const operationButtons = document.querySelectorAll(".operator");
 const equalsButton = document.querySelector(".equal");
@@ -20,6 +25,9 @@ const currDisp = document.querySelector(".current-display");
 let previousOperand = "";
 let currentOperand = "";
 let operation = "";
+
+//* After equal or percent buttons are pressed and then new number entered, we should clear the current display. This boolean variable is used to check these buttons are pressed or not
+let equalOrPercentBtnPressed = false;
 
 //?numbers and decimal buttons event
 numberButtons.forEach((number) => {
@@ -37,9 +45,11 @@ operationButtons.forEach((op) => {
   });
 });
 
+//? Equal button event
 equalsButton.addEventListener("click", () => {
   compute();
   updateDisplay();
+  equalOrPercentBtnPressed = true;
 });
 
 //? All Clear(AC) button event
@@ -58,17 +68,15 @@ pmButton.addEventListener("click", () => {
 percentButton.addEventListener("click", () => {
   percent();
   updateDisplay();
+  equalOrPercentBtnPressed = true;
 });
 
-//? When number and decimal buttons are clicked, this function appends the numbers textContent
+//? When number and decimal buttons are clicked, this function appends the number's textContent to the operands
 const appendNumber = (num) => {
-  if (currentOperand.includes(".") && num === ".")
-    //? if our number includes . and user reenters ., it returns
-    return;
-  //? if user enters more than 10 digit,it returns
-  if (currentOperand.length > 10) return;
+  //? if our number includes . and user reenters ., it returns
+  if (num === "." && currentOperand.includes(".")) return;
 
-  //? if user enters 0 and reenter 0 , it returns
+  //? if user enters 0 and then reenter 0 , it returns
   if (currentOperand === "0" && num === "0") return;
 
   //? if user enters 0  then dont enter 0 and . , it display this entered value.
@@ -76,20 +84,38 @@ const appendNumber = (num) => {
     currentOperand = num;
     return;
   }
+  //? if user enters more than 10 digit,it returns
+  if (currentOperand.length > 10) return;
 
+  //? if equal or percent btn is pressed and then user enter new number, it display just new entered number
+  if (equalOrPercentBtnPressed) {
+    equalOrPercentBtnPressed = false; //* clear for next usage
+    currentOperand = num;
+    return;
+  }
   //? otherwise,it concatinates all numbers to display them
   currentOperand += num;
 };
 
+//? Display the numbers and computation
 const updateDisplay = () => {
+  //? if computation or number is too long, it trims
+  if (currentOperand.toString().length > 12) {
+    currentOperand = currentOperand.toString().slice(0, 12);
+  }
   currDisp.textContent = currentOperand;
-  prevDisp.textContent = `${previousOperand} ${operation}`;
+
+  if (operation != null) {
+    prevDisp.textContent = `${previousOperand} ${operation}`;
+  } else {
+    prevDisp.textContent = "";
+  }
 };
 const chooseOperator = (op) => {
-  //? if user dont enter any number and press first any operator button, it returns
+  //? if user clicks any operator button without entering any number,it returns
   if (currentOperand === "") return;
 
-  //? if user enter any number, it computes
+  //? if user enter any number then press any operator button, it computes
   if (previousOperand) {
     compute();
   }
@@ -100,10 +126,12 @@ const chooseOperator = (op) => {
   currentOperand = "";
 };
 
+//? compute the result
 const compute = () => {
   let computation;
   const prev = parseFloat(previousOperand);
   const current = parseFloat(currentOperand);
+  if (isNaN(prev) || isNaN(current)) return;
   switch (operation) {
     case "+":
       computation = prev + current;
@@ -121,21 +149,25 @@ const compute = () => {
       return;
   }
   currentOperand = computation;
-  //? if equal button is clicked, we should reset operation and previousOperand for next usage
   operation = "";
   previousOperand = "";
+  //? if equal button is clicked, we should reset operation and previousOperand for next usage
 };
 
+//? when ac button is clicked, clear all displays
 const clear = () => {
   operation = "";
   previousOperand = "";
   currentOperand = "";
 };
 
+//? when pm button is clicked, toggle the polarity of entered value
 const plusMinus = () => {
+  if (!currentOperand) return;
   currentOperand = currentOperand * -1;
 };
 
+//? when % button is clicked
 const percent = () => {
   if (!currentOperand) return;
   currentOperand = currentOperand / 100;
