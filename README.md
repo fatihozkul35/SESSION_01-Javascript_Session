@@ -1,6 +1,6 @@
 # Javascript Session Class Notes
 
-JavaScript Class Instructor Notes
+JavaScript Class Notes
 
 ## Lesson Plan
 
