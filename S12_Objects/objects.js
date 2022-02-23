@@ -64,7 +64,7 @@ person["dob"] = 1990;
 person.age = 40;
 console.log(person);
 
-const worker = person; //* Swallow Copying
+const worker = person; //* Shallow Copying
 worker.salary = 40000;
 console.log("WORKER", worker); //* Same
 console.log("PERSON", person); //* Same
@@ -173,4 +173,3 @@ console.log(developers);
 //* EXAMPLE6: calculate avg age of  people.
 const avgAges = people.reduce((acc, item) => acc + item.age, 0) / people.length;
 console.log(avgAges);
-

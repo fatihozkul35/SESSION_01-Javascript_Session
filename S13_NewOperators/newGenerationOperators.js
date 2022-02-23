@@ -2,9 +2,6 @@
 //*    NEW GENERATION OPERATORS: DESTRUCTURING (OBJECT)
 //* ======================================================
 
-//* ======================================================
-//*    NEW GENERATION OPERATORS: DESTRUCTURING (OBJECT)
-//* ======================================================
 const car = {
   name: "BMW",
   model: 1990,
