@@ -1,0 +1,10 @@
+/* img {
+  width: 18rem;
+} */
+.user {
+  display: inline;
+  border: yellow solid 0.5rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  width: 20rem;
+}
