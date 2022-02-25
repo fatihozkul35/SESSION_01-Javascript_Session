@@ -12,12 +12,17 @@
 //? to the Response of that request.
 
 //* Selectors
-const userDiv = document.querySelector(".users");
 const getButton = document.querySelector(".btn");
 
 const getUsers = () => {
   fetch("https://api.github.com/users")
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        //! error handling
+        throw new Error(`Something Went Wrong:${res.status}`);
+      }
+      return res.json();
+    })
     .then((data) => updateDom(data))
     .catch((err) => console.log(err));
 };
@@ -25,5 +30,11 @@ const getUsers = () => {
 getButton.addEventListener("click", getUsers);
 
 const updateDom = (data) => {
-  console.log(data);
+  const userDiv = document.querySelector(".users");
+  data.forEach((user) => {
+    userDiv.innerHTML += ` <h1 class='mt-4'>NAME: <span class='text-danger'>${user.login}</span></h1>
+    <img src=${user.avatar_url} width='50%' alt=""/>
+    <h3>HTML_URL:${user.html_url}</h3>
+    <h3>LOGIN:${user.login}</h3>`;
+  });
 };
