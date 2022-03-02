@@ -15,7 +15,7 @@ const getDataFromDatabase = () => {
 
 //! Functions calling
 getDataFromDatabase();
-renderProducts();
+renderAllProducts();
 calculateCardTotal();
 
 //! Form Submit Event
@@ -24,29 +24,42 @@ document.querySelector("form").addEventListener("submit", () => {
   const newProductPrice = document.querySelector("#add-price").value;
   const newProductQuantity = document.querySelector("#add-quantity").value;
   const newProductUrl = document.querySelector("#add-image").value;
-
+  //! Create a new product object from entered inputs.
   const newProduct = {
     name: newProductName,
     price: Number(newProductPrice),
     amount: Number(newProductQuantity),
     img: newProductUrl,
   };
+  //! add new product to the products array and localStorage area
   products.push(newProduct);
   localStorage.setItem("products", JSON.stringify(products));
   document.querySelector("form").reset();
-  renderProducts();
+  //! add new product to the DOM
+  renderAnyProduct(newProduct);
+  //! Update the card values
   calculateCardTotal();
 });
 
 //! Render All Products
-function renderProducts() {
+function renderAllProducts() {
+  //! if there is no product, it returns
   if (!products.length) return;
-  const productPanel = document.querySelector("#product-panel");
-  productPanel.innerHTML = "";
+
+  //! render all products
   products.forEach((product) => {
-    const { name, img, amount, price } = product;
-    productPanel.innerHTML += ` 
-        <div class="border border-2 border-dark card bg-transparent mb-3">
+    renderAnyProduct(product);
+  });
+  //! Calling event declaration function for the rendered buttons
+  createEventsRemoveBtns();
+  createEventsQuantityBtns();
+}
+function renderAnyProduct(product) {
+  const productPanel = document.querySelector("#product-panel");
+  //!Destructuring of product object
+  const { name, img, amount, price } = product;
+  productPanel.innerHTML += ` 
+        <div class="card shadow-lg mb-3">
             <div class="row g-0">
               <div class="col-md-5">
                 <img
@@ -96,13 +109,7 @@ function renderProducts() {
               </div>
             </div>
           </div> `;
-  });
-
-  //! Calling event decalration function for the rendered buttons
-  createEventsRemoveBtns();
-  createEventsQuantityBtns();
 }
-
 //! events declaration for remove buttons
 function createEventsRemoveBtns() {
   const removeBtns = document.querySelectorAll(".remove-product");
